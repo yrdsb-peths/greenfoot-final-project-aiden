@@ -1,5 +1,5 @@
 #Greenfoot project file
-class.Rock.image=steel-ball.png
+class.Rock.image=ball.png
 class.Terry.image=butterfly.png
 dependency1.from=MyWorld
 dependency1.to=Terry
@@ -7,13 +7,13 @@ dependency1.type=UsesDependency
 dependency2.from=MyWorld
 dependency2.to=Rock
 dependency2.type=UsesDependency
-dependency3.from=Terry
-dependency3.to=Rock
+dependency3.from=Rock
+dependency3.to=Terry
 dependency3.type=UsesDependency
-editor.fx.0.height=739
-editor.fx.0.width=816
-editor.fx.0.x=392
-editor.fx.0.y=40
+editor.fx.0.height=876
+editor.fx.0.width=1616
+editor.fx.0.x=-8
+editor.fx.0.y=-8
 height=876
 package.numDependencies=3
 package.numTargets=3

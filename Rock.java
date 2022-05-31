@@ -15,14 +15,34 @@ public class Rock extends Actor
 
     public void act()
     {
-        
+        carryRock();
     }
-    public void grabRock()
+    
+    public void carryRock()
     {
-        if(isTouching(Rock.class))
+        if(isTouching(Terry.class))
         {
-            removeTouching(Rock.class);
-            hasRock = true;
+            int gravity = 0;
+            gravity += 2;
+            setLocation(getX(), getY() + gravity);
+    
+            // Allows crocodile to move, dependent on the key
+            if (Greenfoot.isKeyDown("right"))
+            {
+                move(4);
+            }
+            if (Greenfoot.isKeyDown("up"))
+            {
+                setLocation(getX(), getY() - 4);
+                gravity = 0;
+            }
+            if(Greenfoot.isKeyDown("left"))
+            {
+                move(-4);
+            }
         }
     }
+    
+
 }
+

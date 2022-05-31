@@ -34,16 +34,7 @@ public class Terry extends Actor
             move(-4);
         }
         
-        
-        //Holds rock after touching it
-        grabRock();
-        
+        //returns true if touching rock
     }
-    public void grabRock()
-    {
-        if(isTouching(Rock.class))
-        {
-            removeTouching(Rock.class);
-        }
-    }
+
 }

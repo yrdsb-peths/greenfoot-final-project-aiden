@@ -2,8 +2,7 @@
 comment0.target=Terry
 comment0.text=\r\n\ Terry\ the\ Pterosaur,\ the\ main\ character\r\n\ \r\n\ @author\ Aiden\ \r\n\ @version\ May\ 27th\r\n
 comment1.params=
-comment1.target=void\ gravity()
-comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ Terry\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment1.target=void\ act()
 comment2.params=
-comment2.target=void\ act()
+comment2.target=void\ grabRock()
 numComments=3

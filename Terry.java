@@ -13,25 +13,37 @@ public class Terry extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     
-    public void gravity()
-    {
-        //
-    }
-    
     public void act()
     {
-        setLocation(getX(), getY() + 1);
+        int gravity = 0;
+        gravity += 2;
+        setLocation(getX(), getY() + gravity);
+
         // Allows crocodile to move, dependent on the key
         if (Greenfoot.isKeyDown("right"))
         {
             move(4);
         }
-        else if(Greenfoot.isKeyDown("left"))
+        if (Greenfoot.isKeyDown("up"))
+        {
+            setLocation(getX(), getY() - 4);
+            gravity = 0;
+        }
+        if(Greenfoot.isKeyDown("left"))
         {
             move(-4);
         }
         
+        
+        //Holds rock after touching it
+        grabRock();
+        
     }
-    
-    
+    public void grabRock()
+    {
+        if(isTouching(Rock.class))
+        {
+            removeTouching(Rock.class);
+        }
+    }
 }

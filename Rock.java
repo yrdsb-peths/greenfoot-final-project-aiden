@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Rock here.
+ * Rock the rock, the main rock
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Aiden 
+ * 
  */
 public class Rock extends Actor
 {
@@ -17,12 +17,9 @@ public class Rock extends Actor
     {
         
     }
-    public void grabRock()
+    public void followTerry(int x, int y)
     {
-        if(isTouching(Rock.class))
-        {
-            removeTouching(Rock.class);
-            hasRock = true;
-        }
+        setLocation(x, y + 50);
     }
+    
 }

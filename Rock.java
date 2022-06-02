@@ -1,10 +1,10 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Rock here.
+ * Rock the rock, the main rock
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @Aiden 
+ * 
  */
 public class Rock extends Actor
 {
@@ -15,34 +15,11 @@ public class Rock extends Actor
 
     public void act()
     {
-        carryRock();
+        
     }
-    
-    public void carryRock()
+    public void followTerry(int x, int y)
     {
-        if(isTouching(Terry.class))
-        {
-            int gravity = 0;
-            gravity += 2;
-            setLocation(getX(), getY() + gravity);
-    
-            // Allows crocodile to move, dependent on the key
-            if (Greenfoot.isKeyDown("right"))
-            {
-                move(4);
-            }
-            if (Greenfoot.isKeyDown("up"))
-            {
-                setLocation(getX(), getY() - 4);
-                gravity = 0;
-            }
-            if(Greenfoot.isKeyDown("left"))
-            {
-                move(-4);
-            }
-        }
+        setLocation(x, y + 50);
     }
     
-
 }
-

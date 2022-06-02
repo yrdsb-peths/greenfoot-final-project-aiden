@@ -18,7 +18,7 @@ public class Terry extends Actor
     public void act()
     {
         
-        gravity += 1;
+        gravity++;
         if(gravity == terminalVelocity)
         {
             gravity = terminalVelocity;
@@ -41,19 +41,23 @@ public class Terry extends Actor
         }
         
         //Holds rock after touching it
-        grabRock();
-        if(heldRock != null)
-        {
-            heldRock.followTerry(getX(), getY());    
-            gravity += 1;
-        }
-        
+        grabRock();   
     }
+    // Tests if Rock is touching Terry
     public void grabRock()
     {
         if(isTouching(Rock.class))
         {
             heldRock = (Rock)getOneIntersectingObject(Rock.class);
+            if(heldRock != null)
+            {
+                if(!Greenfoot.isKeyDown("space"))
+                {
+                    heldRock.followTerry(getX(), getY()); 
+                    gravity += 1;
+                }      
+            }
         }
     }
+
 }

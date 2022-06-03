@@ -13,6 +13,9 @@ public class Terry extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     private Rock heldRock;
+    
+    private Ruby chaseTerry;
+    
     int gravity = 0;
     int terminalVelocity = 10;
     public void act()
@@ -41,7 +44,8 @@ public class Terry extends Actor
         }
         
         //Holds rock after touching it
-        grabRock();   
+        grabRock(); 
+
     }
     // Tests if Rock is touching Terry
     public void grabRock()
@@ -59,5 +63,6 @@ public class Terry extends Actor
             }
         }
     }
+    
 
 }

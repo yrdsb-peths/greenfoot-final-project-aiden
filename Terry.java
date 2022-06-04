@@ -14,7 +14,7 @@ public class Terry extends Actor
      */
     private Rock heldRock;
     
-    private Ruby chaseTerry;
+    
     
     int gravity = 0;
     int terminalVelocity = 10;
@@ -27,20 +27,20 @@ public class Terry extends Actor
             gravity = terminalVelocity;
         }
         setLocation(getX(), getY() + gravity);
-
+        
         // Allows crocodile to move, dependent on the key
-        if (Greenfoot.isKeyDown("right"))
+        if (Greenfoot.isKeyDown("d"))
         {
             move(4);
         }
-        if (Greenfoot.isKeyDown("up"))
+        else if(Greenfoot.isKeyDown("a"))
+        {
+            move(-4);
+        }
+        if (Greenfoot.isKeyDown("w"))
         {
             setLocation(getX(), getY() - 5);
             gravity = 0;
-        }
-        if(Greenfoot.isKeyDown("left"))
-        {
-            move(-4);
         }
         
         //Holds rock after touching it
@@ -59,10 +59,10 @@ public class Terry extends Actor
                 {
                     heldRock.followTerry(getX(), getY()); 
                     gravity += 1;
-                }      
+                }  
+
             }
         }
     }
-    
 
 }

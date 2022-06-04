@@ -28,10 +28,18 @@ public class Rock extends Actor
         {
             gravity = 0; 
         }
-
+        die();
     }
     public void followTerry(int x, int y)
     {
         setLocation(x, y + 50);
+    }
+    
+    public void die()
+    {
+        if(isTouching(Ruby.class))
+        {
+            removeTouching(Ruby.class);
+        }
     }
 }

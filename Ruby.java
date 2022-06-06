@@ -13,10 +13,12 @@ public class Ruby extends Actor
      * Act - do whatever the Ruby wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    private int frame = 0;
     private double gravity = 0;
     private int terminalVelocity = 10;
-    private int speed = Greenfoot.getRandomNumber(4) + 1;
+    private int speed = Greenfoot.getRandomNumber(3) + 1;
     private Terry terry;
+    
     
     public Ruby(Terry terry)
     {
@@ -30,12 +32,13 @@ public class Ruby extends Actor
         {
             gravity = terminalVelocity;
         }
-        setLocation(getX(), getY() + (int)gravity);
         if(getY() >= 800)
         {
             gravity = 0; 
         }
+        setLocation(getX(), getY() + (int)gravity);
         followTerry();
+        jumpAtTerry();
     }
     
     public void followTerry()
@@ -44,10 +47,20 @@ public class Ruby extends Actor
         move(speed);
     }
     
-    public void jumpTerry()
+    public void jumpAtTerry()
     {
-        
+        frame++;
+        if(frame % 120 == 0)
+        {
+            int randNum = Greenfoot.getRandomNumber(4);
+            if(randNum >= 3)
+            {
+                
+                for(int i = 0; i <= 60; i++)
+                {
+                    gravity = -20;
+                }
+            }
+        }
     }
-    
-    
 }

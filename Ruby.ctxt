@@ -8,5 +8,5 @@ comment2.target=void\ act()
 comment3.params=
 comment3.target=void\ followTerry()
 comment4.params=
-comment4.target=void\ jumpTerry()
+comment4.target=void\ jumpAtTerry()
 numComments=5

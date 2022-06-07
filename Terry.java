@@ -13,39 +13,41 @@ public class Terry extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     private Rock heldRock;
-    
-    
-    
-    int gravity = 0;
+    int speedV = 0;
+    int speedH = 0;
     int terminalVelocity = 10;
     public void act()
     {
-        
-        gravity++;
-        if(gravity == terminalVelocity)
+        speedV++;
+        if(speedV == terminalVelocity)
         {
-            gravity = terminalVelocity;
+            speedV = terminalVelocity;
         }
-        setLocation(getX(), getY() + gravity);
-        
+        setLocation(getX() + speedH, getY() + speedV);
         // Allows crocodile to move, dependent on the key
         if (Greenfoot.isKeyDown("d"))
         {
-            move(4);
+            speedH++;
+            if(speedH >= 6)
+            {
+                speedH = 6;
+            }
         }
         else if(Greenfoot.isKeyDown("a"))
         {
-            move(-4);
+            speedH--;
+            if(speedH <= -6)
+            {
+                speedH = -6;
+            }
         }
         if (Greenfoot.isKeyDown("w"))
         {
             setLocation(getX(), getY() - 5);
-            gravity = 0;
+            speedV = 0;
         }
-        
         //Holds rock after touching it
         grabRock(); 
-
     }
     // Tests if Rock is touching Terry
     public void grabRock()
@@ -58,11 +60,13 @@ public class Terry extends Actor
                 if(!Greenfoot.isKeyDown("space"))
                 {
                     heldRock.followTerry(getX(), getY()); 
-                    gravity += 1;
+                    speedV += 1;
                 }  
-
             }
         }
     }
-
+    public int getSpeedH()
+    {
+        return speedH;
+    }
 }

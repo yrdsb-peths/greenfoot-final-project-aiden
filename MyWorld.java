@@ -26,7 +26,7 @@ public class MyWorld extends World
         addObject(terry, 300, 200);
         
         //Create the rock
-        Rock rock = new Rock();
+        Rock rock = new Rock(terry);
         addObject(rock, 30, 200);
         
     }

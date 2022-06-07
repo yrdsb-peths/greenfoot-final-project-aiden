@@ -19,7 +19,6 @@ public class Ruby extends Actor
     private int speed = Greenfoot.getRandomNumber(3) + 1;
     private Terry terry;
     
-    
     public Ruby(Terry terry)
     {
         this.terry = terry;
@@ -55,7 +54,6 @@ public class Ruby extends Actor
             int randNum = Greenfoot.getRandomNumber(4);
             if(randNum >= 3)
             {
-                
                 for(int i = 0; i <= 60; i++)
                 {
                     gravity = -20;

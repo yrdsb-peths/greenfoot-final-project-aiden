@@ -41,7 +41,7 @@ public class Rock extends Actor
         {
             gravity = terminalVelocity;
         }
-        if(getY() >= 800 || isTouching(Terry.class))
+        if(getY() >= 399 || isTouching(Terry.class))
         {
             gravity = 0; 
         }
@@ -66,7 +66,7 @@ public class Rock extends Actor
     
     public void die()
     {
-        if(isTouching(Ruby.class))
+        if(isTouching(Ruby.class) && (velocityX != 0 || gravity != 0))
         {
             removeTouching(Ruby.class);
         }

@@ -16,20 +16,17 @@ public class Terry extends Actor
     int speedV = 0;
     int speedH = 0;
     int terminalVelocity = 10;
-
+    int lifePoints = 2;
     
     public void act()
     {
-        speedV++;
+        speedV += 1;
         if(speedV == terminalVelocity)
         {
             speedV = terminalVelocity;
         }
-        if(getY() >= 800)
-        {
-            speedV = 0;
-        }
         setLocation(getX() + speedH, getY() + speedV);
+        
         // Allows crocodile to move, dependent on the key
         if (Greenfoot.isKeyDown("d"))
         {
@@ -49,8 +46,11 @@ public class Terry extends Actor
         }
         if (Greenfoot.isKeyDown("w"))
         {
-            setLocation(getX(), getY() - 5);
-            speedV -= 2;
+            speedV -= 4;
+            if(speedV <= -10)
+            {
+                speedV = -10;
+            }
         }
         //Holds rock after touching it
         grabRock(); 
@@ -58,6 +58,14 @@ public class Terry extends Actor
         {
             heldRock.followTerry(getX(), getY()); 
             speedV += 1;
+        }
+        if(loseLife())
+        {
+            lifePoints -= 1;
+            if(lifePoints <= 0)
+            {
+                System.out.println("dead");
+            }
         }
     }
     // Tests if Rock is touching Terry
@@ -76,6 +84,15 @@ public class Terry extends Actor
             }
             heldRock = null;
         }
+    }
+    public boolean loseLife()
+    {
+        if(isTouching(Ruby.class))
+        {
+            removeTouching(Ruby.class);
+            return true;
+        }
+        return false;
     }
     public int getSpeedH()
     {

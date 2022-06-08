@@ -14,6 +14,7 @@ public class MyWorld extends World
      * 
      */
     private Terry terry;
+
     private int frame = 0;
     public MyWorld()
     {    

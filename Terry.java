@@ -16,12 +16,18 @@ public class Terry extends Actor
     int speedV = 0;
     int speedH = 0;
     int terminalVelocity = 10;
+
+    
     public void act()
     {
         speedV++;
         if(speedV == terminalVelocity)
         {
             speedV = terminalVelocity;
+        }
+        if(getY() >= 800)
+        {
+            speedV = 0;
         }
         setLocation(getX() + speedH, getY() + speedV);
         // Allows crocodile to move, dependent on the key
@@ -44,29 +50,36 @@ public class Terry extends Actor
         if (Greenfoot.isKeyDown("w"))
         {
             setLocation(getX(), getY() - 5);
-            speedV = 0;
+            speedV -= 2;
         }
         //Holds rock after touching it
         grabRock(); 
+        if(heldRock != null)
+        {
+            heldRock.followTerry(getX(), getY()); 
+            speedV += 1;
+        }
     }
     // Tests if Rock is touching Terry
     public void grabRock()
     {
-        if(isTouching(Rock.class))
+        if(isTouching(Rock.class) && Greenfoot.isKeyDown("space"))
         {
             heldRock = (Rock)getOneIntersectingObject(Rock.class);
+        }
+        else
+        {
             if(heldRock != null)
             {
-                if(!Greenfoot.isKeyDown("space"))
-                {
-                    heldRock.followTerry(getX(), getY()); 
-                    speedV += 1;
-                }  
+                heldRock.setVelocityX(speedH);
+                heldRock.setGravity(speedV);
             }
+            heldRock = null;
         }
     }
     public int getSpeedH()
     {
         return speedH;
     }
+
 }

@@ -16,14 +16,17 @@ public class Terry extends Actor
     int speedV = 0;
     int speedH = 0;
     int terminalVelocity = 10;
+    int lifePoints = 2;
+    
     public void act()
     {
-        speedV++;
+        speedV += 1;
         if(speedV == terminalVelocity)
         {
             speedV = terminalVelocity;
         }
         setLocation(getX() + speedH, getY() + speedV);
+        
         // Allows crocodile to move, dependent on the key
         if (Greenfoot.isKeyDown("d"))
         {
@@ -43,30 +46,57 @@ public class Terry extends Actor
         }
         if (Greenfoot.isKeyDown("w"))
         {
-            setLocation(getX(), getY() - 5);
-            speedV = 0;
+            speedV -= 4;
+            if(speedV <= -10)
+            {
+                speedV = -10;
+            }
         }
         //Holds rock after touching it
         grabRock(); 
+        if(heldRock != null)
+        {
+            heldRock.followTerry(getX(), getY()); 
+            speedV += 1;
+        }
+        if(loseLife())
+        {
+            lifePoints -= 1;
+            if(lifePoints <= 0)
+            {
+                System.out.println("dead");
+            }
+        }
     }
     // Tests if Rock is touching Terry
     public void grabRock()
     {
-        if(isTouching(Rock.class))
+        if(isTouching(Rock.class) && Greenfoot.isKeyDown("space"))
         {
             heldRock = (Rock)getOneIntersectingObject(Rock.class);
+        }
+        else
+        {
             if(heldRock != null)
             {
-                if(!Greenfoot.isKeyDown("space"))
-                {
-                    heldRock.followTerry(getX(), getY()); 
-                    speedV += 1;
-                }  
+                heldRock.setVelocityX(speedH);
+                heldRock.setGravity(speedV);
             }
+            heldRock = null;
         }
+    }
+    public boolean loseLife()
+    {
+        if(isTouching(Ruby.class))
+        {
+            removeTouching(Ruby.class);
+            return true;
+        }
+        return false;
     }
     public int getSpeedH()
     {
         return speedH;
     }
+
 }

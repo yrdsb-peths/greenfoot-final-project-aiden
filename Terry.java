@@ -16,8 +16,7 @@ public class Terry extends Actor
     int speedV = 0;
     int speedH = 0;
     int terminalVelocity = 10;
-    int lifePoints = 2;
-    
+    boolean touch = false;
     public void act()
     {
         speedV += 1;
@@ -52,6 +51,22 @@ public class Terry extends Actor
                 speedV = -10;
             }
         }
+        if(getY() >= 399)
+        {
+            speedV -= 1;
+            if(speedH > 0)
+            {
+                speedH -= 0.1;
+            }
+            else if(speedH < 0)
+            {
+                speedH += 0.1;
+            }
+            else
+            {
+                speedH = 0;
+            }
+        }
         //Holds rock after touching it
         grabRock(); 
         if(heldRock != null)
@@ -59,14 +74,8 @@ public class Terry extends Actor
             heldRock.followTerry(getX(), getY()); 
             speedV += 1;
         }
-        if(loseLife())
-        {
-            lifePoints -= 1;
-            if(lifePoints <= 0)
-            {
-                System.out.println("dead");
-            }
-        }
+        
+        loseLife();
     }
     // Tests if Rock is touching Terry
     public void grabRock()
@@ -85,15 +94,18 @@ public class Terry extends Actor
             heldRock = null;
         }
     }
-    public boolean loseLife()
+    
+    public void loseLife()
     {
         if(isTouching(Ruby.class))
         {
+            MyWorld world = (MyWorld) getWorld();
+            world.decreaseLife();    
             removeTouching(Ruby.class);
-            return true;
+                
         }
-        return false;
     }
+    
     public int getSpeedH()
     {
         return speedH;

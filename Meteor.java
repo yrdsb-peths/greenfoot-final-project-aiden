@@ -21,7 +21,7 @@ public class Meteor extends Actor
         {
             gravity = terminalVelocity;
         }
-        if(getY() >= 399 || isTouching(Terry.class))
+        if(getY() >= 399)
         {
             gravity = 0; 
         }

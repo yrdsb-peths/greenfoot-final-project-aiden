@@ -12,11 +12,51 @@ public class Terry extends Actor
      * Act - do whatever the Terry wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    
+    GreenfootImage[] idleRight = new GreenfootImage[8];
+    GreenfootImage[] idleLeft = new GreenfootImage[8];
+    String facing = "right";
+    
     private Rock heldRock;
     int speedV = 0;
     int speedH = 0;
     int terminalVelocity = 10;
     boolean touch = false;
+    public Terry()
+    {
+        for(int i =0; i < idleRight.length; i++)
+        {
+            idleRight[i] = new GreenfootImage("images/terry_idle/idle"+ i +".png");
+            idleRight[i].scale(150,110);
+        }
+        setImage(idleRight[0]);
+        
+        for(int i =0; i < idleLeft.length; i++)
+        {
+            idleLeft[i] = new GreenfootImage("images/terry_idle/idle"+ i +".png");
+            idleLeft[i].mirrorHorizontally();
+            idleLeft[i].scale(150,110);
+        }
+        
+    }
+    
+    
+    int imageIndex = 0;
+    public void animateTerry()
+    {
+        if(facing.equals("right"))
+        {
+            setImage(idleRight[imageIndex]);
+            imageIndex = (imageIndex + 1) % idleRight.length;
+        }
+        else
+        {
+            setImage(idleLeft[imageIndex]);
+            imageIndex = (imageIndex + 1) % idleLeft.length;
+        }
+    }
+    
+    
     public void act()
     {
         speedV += 1;
@@ -30,6 +70,7 @@ public class Terry extends Actor
         if (Greenfoot.isKeyDown("d"))
         {
             speedH++;
+            facing = "left";
             if(speedH >= 6)
             {
                 speedH = 6;
@@ -38,6 +79,7 @@ public class Terry extends Actor
         else if(Greenfoot.isKeyDown("a"))
         {
             speedH--;
+            facing = "right";
             if(speedH <= -6)
             {
                 speedH = -6;
@@ -74,6 +116,8 @@ public class Terry extends Actor
             heldRock.followTerry(getX(), getY()); 
             speedV += 1;
         }
+        
+        animateTerry();
         
         loseLife();
     }

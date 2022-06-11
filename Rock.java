@@ -16,9 +16,13 @@ public class Rock extends Actor
     double velocityX = 0;
     double gravity = 0;
     int terminalVelocity = 10;
+    
+    
     public Rock(Terry terry)
     {
         this.terry = terry;
+        GreenfootImage rockImage = new GreenfootImage("Rock.png");
+        rockImage.scale(100, 100);
     }
     
     public void act()
@@ -41,7 +45,7 @@ public class Rock extends Actor
         {
             gravity = terminalVelocity;
         }
-        if(getY() >= 399 || isTouching(Terry.class))
+        if(getY() >= 399)
         {
             gravity = 0; 
         }
@@ -52,6 +56,7 @@ public class Rock extends Actor
     public void followTerry(int x, int y)
     {
         setLocation(x, y + 50);
+        gravity = 0;
     }
     
     public void setVelocityX(int rockSpeed)

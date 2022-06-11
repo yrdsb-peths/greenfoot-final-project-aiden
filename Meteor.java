@@ -29,8 +29,11 @@ public class Meteor extends Actor
         // Add your action code here.
         if(getY() >= 399)
         {
+             if(getWorld().getObjects(Ruby.class) != null)
+             {
+                 getWorld().removeObjects(getWorld().getObjects(Ruby.class));
+             }
              getWorld().removeObject(this);
-             getWorld().removeObjects(getWorld().getObjects(Ruby.class));
         }
     }
 }

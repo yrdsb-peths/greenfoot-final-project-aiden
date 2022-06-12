@@ -45,10 +45,11 @@ public class Rock extends Actor
         {
             gravity = terminalVelocity;
         }
-        if(getY() >= 399)
+        if(getY() >= 385)
         {
-            gravity = 0; 
+            gravity = 0;
         }
+        
         setLocation(getX() + (int)velocityX, getY() + (int)gravity);
         
         die();

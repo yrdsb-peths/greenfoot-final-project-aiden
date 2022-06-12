@@ -13,8 +13,8 @@ public class Terry extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     
-    GreenfootImage[] idleRight = new GreenfootImage[8];
-    GreenfootImage[] idleLeft = new GreenfootImage[8];
+    GreenfootImage[] idleRight = new GreenfootImage[9];
+    GreenfootImage[] idleLeft = new GreenfootImage[9];
     String facing = "right";
     
     private Rock heldRock;
@@ -22,6 +22,8 @@ public class Terry extends Actor
     int speedH = 0;
     int terminalVelocity = 10;
     boolean touch = false;
+    
+    int imageIndex = 0;
     public Terry()
     {
         for(int i =0; i < idleRight.length; i++)
@@ -40,8 +42,6 @@ public class Terry extends Actor
         
     }
     
-    
-    int imageIndex = 0;
     public void animateTerry()
     {
         if(facing.equals("right"))
@@ -55,7 +55,6 @@ public class Terry extends Actor
             imageIndex = (imageIndex + 1) % idleLeft.length;
         }
     }
-    
     
     public void act()
     {
@@ -93,9 +92,9 @@ public class Terry extends Actor
                 speedV = -10;
             }
         }
-        if(getY() >= 399)
+        if(getY() >= 350)
         {
-            speedV -= 1;
+            speedV -= 5;
             if(speedH > 0)
             {
                 speedH -= 0.1;

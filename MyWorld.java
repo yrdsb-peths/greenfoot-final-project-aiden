@@ -37,7 +37,7 @@ public class MyWorld extends World
         
         //Create the rock
         Rock rock = new Rock(terry);
-        addObject(rock, 600, 400);
+        addObject(rock, 600, 385);
         
         lifeLabel = new Label(lifePoints, 40);
         addObject(lifeLabel, 1150, 30);
@@ -72,7 +72,7 @@ public class MyWorld extends World
         if(frame % 120 == 0)
         {
             Ruby ruby = new Ruby(terry);
-            addObject(ruby, Greenfoot.getRandomNumber(1200), 750);
+            addObject(ruby, Greenfoot.getRandomNumber(1200), 350);
         }
         
         if(frame % impactFrame == 0)

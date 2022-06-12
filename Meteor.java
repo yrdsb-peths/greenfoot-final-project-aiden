@@ -12,8 +12,27 @@ public class Meteor extends Actor
      * Act - do whatever the Meteor wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    
+    GreenfootImage[] meteorIdle = new GreenfootImage[3];
+    int imageIndex = 0;
     double gravity = 0;
     int terminalVelocity = 10;
+    
+    public Meteor()
+    {
+        for(int i =0; i < meteorIdle.length; i++)
+        {
+            meteorIdle[i] = new GreenfootImage("images/meteor_idle/idle"+ i +".png");
+        }
+        setImage(meteorIdle[0]);
+    }
+    
+    public void animateMeteor()
+    {
+        setImage(meteorIdle[imageIndex]);
+        imageIndex = (imageIndex + 1) % meteorIdle.length;
+    }
+    
     public void act()
     {
         gravity += 0.5;
@@ -35,5 +54,6 @@ public class Meteor extends Actor
              }
              getWorld().removeObject(this);
         }
+        animateMeteor();
     }
 }

@@ -2,5 +2,9 @@
 comment0.target=Meteor
 comment0.text=\r\n\ Write\ a\ description\ of\ class\ Meteor\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
-comment1.target=void\ act()
-numComments=2
+comment1.target=Meteor()
+comment2.params=
+comment2.target=void\ animateMeteor()
+comment3.params=
+comment3.target=void\ act()
+numComments=4

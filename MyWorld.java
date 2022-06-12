@@ -69,10 +69,10 @@ public class MyWorld extends World
             meteorTimer.setValue(impactTimer);
         }
         
-        if(frame % 120 == 0)
+        if(frame % 180 == 0)
         {
             Ruby ruby = new Ruby(terry);
-            addObject(ruby, Greenfoot.getRandomNumber(1200), 350);
+            addObject(ruby, Greenfoot.getRandomNumber(1200), 380);
         }
         
         if(frame % impactFrame == 0)

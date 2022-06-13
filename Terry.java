@@ -12,6 +12,8 @@ public class Terry extends Actor
      * Act - do whatever the Terry wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    GreenfootSound terryHurt = new GreenfootSound("terryScreach.wav");
+    GreenfootSound terryFly = new GreenfootSound("wingFlap.mp3");
     
     GreenfootImage[] idleRight = new GreenfootImage[9];
     GreenfootImage[] idleLeft = new GreenfootImage[9];
@@ -26,6 +28,7 @@ public class Terry extends Actor
     int imageIndex = 0;
     public Terry()
     {
+        terryFly.playLoop();
         for(int i =0; i < idleRight.length; i++)
         {
             idleRight[i] = new GreenfootImage("images/terry_idle/idle"+ i +".png");
@@ -91,6 +94,7 @@ public class Terry extends Actor
             {
                 speedV = -10;
             }
+            
         }
         if(getY() >= 350)
         {
@@ -145,7 +149,7 @@ public class Terry extends Actor
             MyWorld world = (MyWorld) getWorld();
             world.decreaseLife();    
             removeTouching(Ruby.class);
-                
+            terryHurt.play();  
         }
     }
     

@@ -12,6 +12,7 @@ public class Meteor extends Actor
      * Act - do whatever the Meteor wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    GreenfootSound meteorExplosion = new GreenfootSound("meteorExplosion.mp3");
     
     GreenfootImage[] meteorIdle = new GreenfootImage[3];
     int imageIndex = 0;
@@ -40,10 +41,7 @@ public class Meteor extends Actor
         {
             gravity = terminalVelocity;
         }
-        if(getY() >= 399)
-        {
-            gravity = 0; 
-        }
+        
         setLocation(getX(), getY() + (int)gravity);
         // Add your action code here.
         if(getY() >= 399)
@@ -53,6 +51,7 @@ public class Meteor extends Actor
                  getWorld().removeObjects(getWorld().getObjects(Ruby.class));
              }
              getWorld().removeObject(this);
+             meteorExplosion.play();
         }
         animateMeteor();
     }

@@ -13,6 +13,7 @@ public class MyWorld extends World
      * Constructor for objects of class MyWorld.
      * 
      */
+    GreenfootSound backgroundMusic = new GreenfootSound("backgroundMusic.mp3");
     private Terry terry;
     public int lifePoints = 2;
     
@@ -30,6 +31,7 @@ public class MyWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1200, 400, 1); 
+        backgroundMusic.playLoop();
         
         // Create Terry the Pterodactyl 
         terry = new Terry();
@@ -43,7 +45,7 @@ public class MyWorld extends World
         addObject(lifeLabel, 1150, 30);
         
         meteorTimer = new Label(impactTimer, 40);
-        addObject(meteorTimer, 1100, 30);
+        addObject(meteorTimer, 600, 30);
         
         wave = new Label(waveCounter, 40);
         addObject(wave, 1050, 30);
@@ -58,6 +60,7 @@ public class MyWorld extends World
     public void act()
     {
         frame++;
+        int rubyX = 0;
         //Create Rubys
         if(frame % 60 == 0)
         {
@@ -71,14 +74,24 @@ public class MyWorld extends World
         
         if(frame % 180 == 0)
         {
+            int rubySpawn = Greenfoot.getRandomNumber(2);
+            if(rubySpawn == 1)
+            {
+                rubyX = 1200;
+            }
+            else
+            {
+                rubyX = 1;
+            }
             Ruby ruby = new Ruby(terry);
-            addObject(ruby, Greenfoot.getRandomNumber(1200), 380);
+            addObject(ruby, rubyX, 380);
         }
+        
         
         if(frame % impactFrame == 0)
         {
             Meteor meteor = new Meteor();
-            addObject(meteor, Greenfoot.getRandomNumber(1200), 0);
+            addObject(meteor, 600, 0);
             impactFrame += impactFrame;
             waveCounter++;
             wave.setValue(waveCounter);

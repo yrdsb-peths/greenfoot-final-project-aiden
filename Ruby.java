@@ -13,6 +13,8 @@ public class Ruby extends Actor
      * Act - do whatever the Ruby wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    
+    
     GreenfootImage[] idleRight = new GreenfootImage[11];
     GreenfootImage[] idleLeft = new GreenfootImage[11];
     
@@ -78,7 +80,6 @@ public class Ruby extends Actor
     {
         if(getY() < 360)
         {
-            System.out.println("sa");
             if(facing.equals("right"))
             {
                 setImage(jumpRight[jumpIndex]);

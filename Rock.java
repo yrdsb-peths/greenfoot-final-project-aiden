@@ -16,7 +16,7 @@ public class Rock extends Actor
     double velocityX = 0;
     double gravity = 0;
     int terminalVelocity = 10;
-    
+    GreenfootSound rockBonk = new GreenfootSound("rockBonk1.mp3");
     
     public Rock(Terry terry)
     {
@@ -58,6 +58,7 @@ public class Rock extends Actor
     {
         setLocation(x, y + 50);
         gravity = 0;
+        velocityX = 0;
     }
     
     public void setVelocityX(int rockSpeed)
@@ -72,9 +73,10 @@ public class Rock extends Actor
     
     public void die()
     {
-        if(isTouching(Ruby.class) && (velocityX != 0 || gravity != 0))
+        if(isTouching(Ruby.class) && (velocityX != 0 || gravity != 0) && !Greenfoot.isKeyDown("space"))
         {
             removeTouching(Ruby.class);
+            rockBonk.play();
         }
     }
     

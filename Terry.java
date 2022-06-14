@@ -28,7 +28,7 @@ public class Terry extends Actor
     int imageIndex = 0;
     public Terry()
     {
-        terryFly.playLoop();
+        
         for(int i =0; i < idleRight.length; i++)
         {
             idleRight[i] = new GreenfootImage("images/terry_idle/idle"+ i +".png");
@@ -47,6 +47,7 @@ public class Terry extends Actor
     
     public void animateTerry()
     {
+        terryFly.playLoop();
         if(facing.equals("right"))
         {
             setImage(idleRight[imageIndex]);

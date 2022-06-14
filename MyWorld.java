@@ -11,7 +11,7 @@ public class MyWorld extends World
 
     /**
      * Constructor for objects of class MyWorld.
-     * 
+     *   
      */
     GreenfootSound backgroundMusic = new GreenfootSound("backgroundMusic.mp3");
     private Terry terry;
@@ -25,13 +25,15 @@ public class MyWorld extends World
     Label lifeLabel;
     Label meteorTimer;
     Label wave;
+    Label gameOver;
+    Label waveScore;
     private int frame = 0;
     
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1200, 400, 1); 
-        backgroundMusic.playLoop();
+        backgroundMusic.playLoop() ;
         
         // Create Terry the Pterodactyl 
         terry = new Terry();
@@ -42,19 +44,27 @@ public class MyWorld extends World
         addObject(rock, 600, 385);
         
         lifeLabel = new Label(lifePoints, 40);
-        addObject(lifeLabel, 1150, 30);
+        addObject(lifeLabel, 1148, 50);
         
         meteorTimer = new Label(impactTimer, 40);
-        addObject(meteorTimer, 600, 30);
+        addObject(meteorTimer, 600, 45);
         
         wave = new Label(waveCounter, 40);
-        addObject(wave, 1050, 30);
+        addObject(wave, 55, 50);
     }
     
     public void decreaseLife()
     {
         lifePoints--;
         lifeLabel.setValue(lifePoints);
+        if(lifePoints <= 0)
+        {
+            Greenfoot.stop(); 
+            gameOver = new Label("Game Over", 100);
+            addObject(gameOver, 600, 100);
+            waveScore = new Label("Wave: "+ waveCounter, 80);
+            addObject(waveScore, 600, 200);
+        }
     }
     
     public void act()

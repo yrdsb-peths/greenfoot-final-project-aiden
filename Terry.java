@@ -48,6 +48,7 @@ public class Terry extends Actor
     public void animateTerry()
     {
         terryFly.playLoop();
+        terryFly.setVolume(30);
         if(facing.equals("right"))
         {
             setImage(idleRight[imageIndex]);
@@ -113,6 +114,18 @@ public class Terry extends Actor
                 speedH = 0;
             }
         }
+        if(getX() <= 60)
+        {
+            speedH += 5;
+        }
+        else if(getX() >= 1140)
+        {
+            speedH -= 5;
+        }
+        else if(getY() <= 20)
+        {
+            speedV += 5;
+        }
         //Holds rock after touching it
         grabRock(); 
         if(heldRock != null)
@@ -150,7 +163,8 @@ public class Terry extends Actor
             MyWorld world = (MyWorld) getWorld();
             world.decreaseLife();    
             removeTouching(Ruby.class);
-            terryHurt.play();  
+            terryHurt.play(); 
+            terryHurt.setVolume(50);
         }
     }
     

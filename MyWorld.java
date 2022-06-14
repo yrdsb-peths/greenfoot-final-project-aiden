@@ -34,6 +34,7 @@ public class MyWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(1200, 400, 1); 
         backgroundMusic.playLoop() ;
+        backgroundMusic.setVolume(30);
         
         // Create Terry the Pterodactyl 
         terry = new Terry();
@@ -61,9 +62,9 @@ public class MyWorld extends World
         {
             Greenfoot.stop(); 
             gameOver = new Label("Game Over", 100);
-            addObject(gameOver, 600, 100);
+            addObject(gameOver, 600, 150);
             waveScore = new Label("Wave: "+ waveCounter, 80);
-            addObject(waveScore, 600, 200);
+            addObject(waveScore, 600, 250);
         }
     }
     

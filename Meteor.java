@@ -52,6 +52,7 @@ public class Meteor extends Actor
              }
              getWorld().removeObject(this);
              meteorExplosion.play();
+             meteorExplosion.setVolume(30);
         }
         animateMeteor();
     }

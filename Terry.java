@@ -1,17 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Terry the Pterosaur, the main character
+ * Terry the Pterosaur, the main character which the player controls
  * 
  * @author Aiden 
- * @version May 27th
+ * @version June 2022
  */
 public class Terry extends Actor
 {
-    /**
-     * Act - do whatever the Terry wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     GreenfootSound terryHurt = new GreenfootSound("terryScreach.wav");
     GreenfootSound terryFly = new GreenfootSound("wingFlap.mp3");
     
@@ -20,12 +16,14 @@ public class Terry extends Actor
     String facing = "right";
     
     private Rock heldRock;
-    int speedV = 0;
-    int speedH = 0;
+    int speedY = 0;
+    int speedX = 0;
     int terminalVelocity = 10;
-    boolean touch = false;
-    
     int imageIndex = 0;
+    boolean touch = false;
+    /**
+     * Main constructor for Terry, run animations
+     */
     public Terry()
     {
         
@@ -45,6 +43,9 @@ public class Terry extends Actor
         
     }
     
+    /**
+     * Animate Terry flying and play flapping sound
+     */
     public void animateTerry()
     {
         terryFly.playLoop();
@@ -61,84 +62,97 @@ public class Terry extends Actor
         }
     }
     
+    /**
+     * Main act loop for Terry, key controls, speed of X and Y axis 
+     */
     public void act()
     {
-        speedV += 1;
-        if(speedV == terminalVelocity)
+        //Increase speedV until terminal velocity
+        speedY += 1;
+        if(speedY == terminalVelocity)
         {
-            speedV = terminalVelocity;
+            speedY = terminalVelocity;
         }
-        setLocation(getX() + speedH, getY() + speedV);
+        setLocation(getX() + speedX, getY() + speedY);
         
-        // Allows crocodile to move, dependent on the key
+        // Allows Terry to move, dependent on key
         if (Greenfoot.isKeyDown("d"))
         {
-            speedH++;
+            speedX++;
             facing = "left";
-            if(speedH >= 6)
+            if(speedX >= 6)
             {
-                speedH = 6;
+                speedX = 6;
             }
         }
+        
         else if(Greenfoot.isKeyDown("a"))
         {
-            speedH--;
+            speedX--;
             facing = "right";
-            if(speedH <= -6)
+            if(speedX <= -6)
             {
-                speedH = -6;
+                speedX = -6;
             }
         }
+        
         if (Greenfoot.isKeyDown("w"))
         {
-            speedV -= 4;
-            if(speedV <= -10)
+            speedY -= 4;
+            if(speedY <= -10)
             {
-                speedV = -10;
+                speedY = -10;
             }
             
         }
+        
+        //If Terry is touching the ground, set the speedV to 0
         if(getY() >= 350)
         {
-            speedV -= 5;
-            if(speedH > 0)
+            speedY -= 5;
+            if(speedX > 0)
             {
-                speedH -= 0.1;
+                speedX -= 0.1;
             }
-            else if(speedH < 0)
+            else if(speedX < 0)
             {
-                speedH += 0.1;
+                speedX += 0.1;
             }
             else
             {
-                speedH = 0;
+                speedX = 0;
             }
         }
+        
+        //If Terry is touching the sides of the world, make him bounce off
         if(getX() <= 60)
         {
-            speedH += 5;
+            speedX += 5;
         }
         else if(getX() >= 1140)
         {
-            speedH -= 5;
+            speedX -= 5;
         }
         else if(getY() <= 20)
         {
-            speedV += 5;
+            speedY += 5;
         }
-        //Holds rock after touching it
+        
+        //If Terry is holding the rock, have it follow him
         grabRock(); 
         if(heldRock != null)
         {
             heldRock.followTerry(getX(), getY()); 
-            speedV += 1;
+            speedY += 1;
         }
         
         animateTerry();
-        
         loseLife();
     }
-    // Tests if Rock is touching Terry
+    
+    /**
+     * If Terry is touching the Rock and holding down space, have it follow him
+     */
     public void grabRock()
     {
         if(isTouching(Rock.class) && Greenfoot.isKeyDown("space"))
@@ -149,13 +163,16 @@ public class Terry extends Actor
         {
             if(heldRock != null)
             {
-                heldRock.setVelocityX(speedH);
-                heldRock.setGravity(speedV);
+                heldRock.setSpeedX(speedX);
+                heldRock.setSpeedY(speedY);
             }
             heldRock = null;
         }
     }
     
+    /**
+     * If a Ruby touches Terry, have him lose a life point
+     */
     public void loseLife()
     {
         if(isTouching(Ruby.class))
@@ -168,9 +185,12 @@ public class Terry extends Actor
         }
     }
     
-    public int getSpeedH()
+    /**
+     * Return his X-axis speed
+     */
+    public int getSpeedX()
     {
-        return speedH;
+        return speedX;
     }
 
 }

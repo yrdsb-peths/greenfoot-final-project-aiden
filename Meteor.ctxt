@@ -1,10 +1,13 @@
 #BlueJ class context
 comment0.target=Meteor
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Meteor\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ The\ metoer\ actor\ that\ deletes\ all\ Rubies\ on\ impact,\ and\ makes\ a\ new\ wave\r\n\ \r\n\ @author\ Aiden\ Salas\r\n\ @version\ June\ 2022\r\n
 comment1.params=
 comment1.target=Meteor()
+comment1.text=\r\n\ Main\ Constructor\ class\ for\ meteor,\ runs\ animation\r\n
 comment2.params=
 comment2.target=void\ animateMeteor()
+comment2.text=\r\n\ Animate\ the\ meteor\r\n
 comment3.params=
 comment3.target=void\ act()
+comment3.text=\r\n\ Main\ act\ loop\ for\ the\ Meteor,\ sets\ speedY\ rules\r\n
 numComments=4

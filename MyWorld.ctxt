@@ -1,10 +1,12 @@
 #BlueJ class context
 comment0.target=MyWorld
-comment0.text=\r\n\ Makes\ the\ main\ world\ where\ Terry,\ Ruby\ and\ all\ actors\ will\ be\ playing\ in,\ \r\n\ Constructs\ all\ the\ actors\ in\ their\ appropriate\ spawning\ places\r\n\ \r\n\ @Aiden\ Salas\ \r\n\ @version\ (13)\r\n
+comment0.text=\r\n\ Makes\ the\ main\ world\ where\ \r\n\ \r\n\ @author\ Aiden\ Salas\ \r\n\ @version\ June\ 2022\r\n
 comment1.params=
 comment1.target=MyWorld()
 comment2.params=
 comment2.target=void\ decreaseLife()
+comment2.text=\r\n\ Decrease\ the\ Life\ points\ Terry\ has\ and\ update\ the\ label\r\n
 comment3.params=
 comment3.target=void\ act()
+comment3.text=\r\n\ Main\ act\ loop\ to\ spawn\ actors\ constantly\ \r\n
 numComments=4

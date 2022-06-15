@@ -1,35 +1,29 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Makes the main world where Terry, Ruby and all actors will be playing in, 
- * Constructs all the actors in their appropriate spawning places
+ * The main world where the game takes place
  * 
- * @Aiden Salas 
- * @version (13)
+ * @author Aiden Salas 
+ * @version June 2022
  */
 public class MyWorld extends World
 {
+    private Terry terry;
     // Background music looped
     GreenfootSound backgroundMusic = new GreenfootSound("backgroundMusic.mp3");
     
-    //Bring over Terry
-    private Terry terry;
-    
-    //variables
     public int lifePoints = 2;
     public int impactFrame = 600;
     public int impactTimer = impactFrame/60;
     public int waveCounter = 1;
     private int frame = 0;
     
-    //Make labels
     Label lifeLabel;
     Label meteorTimer;
     Label wave;
     Label gameOver;
     Label waveScore;
     
-    //World Constructor
     public MyWorld()
     {    
         // Create a new world with 1200x400 cells with a cell size of 1x1 pixels.
@@ -60,44 +54,39 @@ public class MyWorld extends World
         addObject(wave, 55, 50);
     }
     
-    //When called decrease the life point counter of terry
+    /**
+     * Decrease the Life points Terry has and update the label
+     */
     public void decreaseLife()
     {
-        //decrease life point counter and set the label value
         lifePoints--;
         lifeLabel.setValue(lifePoints);
-        
-        //Terry runs out of life points end game and display wave counter
+
+        //If Terry runs out of life points, end the game and display wave counter
         if(lifePoints <= 0)
         {
-            //stop the game
             Greenfoot.stop(); 
             
-            //Create game over label
             gameOver = new Label("Game Over", 100);
             addObject(gameOver, 600, 150);
-            
-            //Create wave label for wave reached
+
             waveScore = new Label("Wave: "+ waveCounter, 80);
             addObject(waveScore, 600, 250);
         }
     }
     
-    //act loop
+    /**
+     * Main act loop to spawn actors constantly 
+     */
     public void act()
     {
-        //increase frame counter
         frame++;
-        
-        //Create ruby x-coordinate variable
         int rubyX = 0;
         
-        //Update meteor impact timer every 60 frames
+        //Update meteor impact timer to seconds every 60 frames
         if(frame % 60 == 0)
         {
-            //Minus the impact timer every 60 frames
-            impactTimer--;
-            
+            impactTimer--;    
             //If the timer is above 0, convert frames to seconds and set the label to the seconds
             if(impactTimer <= 0)
             {
@@ -122,11 +111,12 @@ public class MyWorld extends World
             addObject(ruby, rubyX, 380);
         }
         
-        
+        //Once the frame counter reaches the impact time, drop the meteor and update the Wave counter
         if(frame % impactFrame == 0)
         {
             Meteor meteor = new Meteor();
             addObject(meteor, 600, 0);
+            //Increase the impact time to itself * 2 
             impactFrame += impactFrame;
             waveCounter++;
             wave.setValue(waveCounter);

@@ -1,23 +1,22 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Rock the rock, the main rock
+ * Rock, the main weapon of Terry used against Ruby
  * 
- * @Aiden 
- * 
+ * @author Aiden Salas
+ * @version June 2022
  */
 public class Rock extends Actor
 {
-    /**
-     * Act - do whatever the Rock wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     private Terry terry;
-    double velocityX = 0;
-    double gravity = 0;
+    double speedX = 0;
+    double speedY = 0;
     int terminalVelocity = 10;
     GreenfootSound rockBonk = new GreenfootSound("rockBonk1.mp3");
     
+    /**
+     * Main constructor for Rock, set image and scale
+     */
     public Rock(Terry terry)
     {
         this.terry = terry;
@@ -25,55 +24,73 @@ public class Rock extends Actor
         rockImage.scale(100, 100);
     }
     
+    /**
+     * Main act loop for rock, increase velocity of X and Y axis
+     */
     public void act()
     {
-        if(velocityX > 0)
+        // Form of air resistance on the rock
+        if(speedX > 0)
         {
-            velocityX -= 0.1;
+            speedX -= 0.1;
         }
-        else if(velocityX < 0)
+        else if(speedX < 0)
         {
-            velocityX += 0.1;
+            speedX += 0.1;
         }
-        if(velocityX < 0.1 && velocityX > -0.1)
+        if(speedX < 0.1 && speedX > -0.1)
         {
-            velocityX = 0;
+            speedX = 0;
         }
         
-        gravity += 0.5;
-        if(gravity == terminalVelocity)
+        //increase rock y speed until terminal velocity or stop when it hits the ground
+        speedY += 0.5;
+        if(speedY == terminalVelocity)
         {
-            gravity = terminalVelocity;
+            speedY = terminalVelocity;
         }
         if(getY() >= 385)
         {
-            gravity = 0;
+            speedY = 0;
         }
-        
-        setLocation(getX() + (int)velocityX, getY() + (int)gravity);
+        setLocation(getX() + (int)speedX, getY() + (int)speedY);
         
         die();
     }
+    
+    /**
+     * Follow Terry as if being picked up by him
+     */
     public void followTerry(int x, int y)
     {
         setLocation(x, y + 50);
-        gravity = 0;
-        velocityX = 0;
+        speedY = 0;
+        speedX = 0;
     }
     
-    public void setVelocityX(int rockSpeed)
+    /**
+     * Set the rocks X-axis speed to Terry's X-axis speed
+     */
+    public void setSpeedX(int terrySpeedX)
     {
-         velocityX = rockSpeed;
+         speedX = terrySpeedX;
     }
     
-    public void setGravity(int rockGravity)
+    /**
+     * Set the Y-axis speed of rock to Terry's Y-axis speed
+     */
+    public void setSpeedY(int terrySpeedY)
     {
-        gravity = rockGravity;
+        speedY = terrySpeedY;
     }
     
+    /**
+     * delete the Ruby that touches the rock and play bonk sound
+     */
     public void die()
     {
-        if(isTouching(Ruby.class) && (velocityX != 0 || gravity != 0) && !Greenfoot.isKeyDown("space"))
+        //If the Rock is touching a Ruby with speed in either X or Y, delete the Ruby
+        if(isTouching(Ruby.class) && (speedX != 0 || speedY != 0) && !Greenfoot.isKeyDown("space"))
         {
             removeTouching(Ruby.class);
             rockBonk.play();

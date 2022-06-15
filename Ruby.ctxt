@@ -1,16 +1,22 @@
 #BlueJ class context
 comment0.target=Ruby
-comment0.text=\r\n\ Ruby\ the\ Raptor,\ the\ main\ Raptor\r\n\ \r\n\ @Aiden\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Ruby\ the\ Raptor,\ the\ enemy\ of\ Terry\ that\ follows\ and\ jumps\ at\ him\ \r\n\ \r\n\ @author\ Aiden\ \r\n\ @version\ June\ 2022\r\n
 comment1.params=terry
 comment1.target=Ruby(Terry)
+comment1.text=\r\n\ Main\ constructor\ for\ Ruby,\ run\ animations\r\n
 comment2.params=
-comment2.target=void\ animateRubyIdle()
+comment2.target=void\ animateRubyWalk()
+comment2.text=\r\n\ Animate\ Ruby's\ walk\r\n
 comment3.params=
 comment3.target=void\ animateRubyJump()
+comment3.text=\r\n\ Animate\ Ruby's\ jump\r\n
 comment4.params=
 comment4.target=void\ act()
+comment4.text=\r\n\ Main\ act\ loop\ for\ Ruby\r\n
 comment5.params=
 comment5.target=void\ followTerry()
+comment5.text=\r\n\ Take\ Terry's\ coordinates\ and\ move\ towards\ it\r\n
 comment6.params=
 comment6.target=void\ jumpAtTerry()
+comment6.text=\r\n\ Have\ a\ chance\ to\ jump\ at\ Terry\r\n
 numComments=7

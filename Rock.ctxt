@@ -1,16 +1,22 @@
 #BlueJ class context
 comment0.target=Rock
-comment0.text=\r\n\ Rock\ the\ rock,\ the\ main\ rock\r\n\ \r\n\ @Aiden\ \r\n\ \r\n
+comment0.text=\r\n\ Rock,\ the\ main\ weapon\ of\ Terry\ used\ against\ Ruby\r\n\ \r\n\ @author\ Aiden\ Salas\r\n\ @version\ June\ 2022\r\n
 comment1.params=terry
 comment1.target=Rock(Terry)
+comment1.text=\r\n\ Main\ constructor\ for\ Rock,\ set\ image\ and\ scale\r\n
 comment2.params=
 comment2.target=void\ act()
+comment2.text=\r\n\ Main\ act\ loop\ for\ rock,\ increase\ velocity\ of\ X\ and\ Y\ axis\r\n
 comment3.params=x\ y
 comment3.target=void\ followTerry(int,\ int)
-comment4.params=rockSpeed
-comment4.target=void\ setVelocityX(int)
-comment5.params=rockGravity
-comment5.target=void\ setGravity(int)
+comment3.text=\r\n\ Follow\ Terry\ as\ if\ being\ picked\ up\ by\ him\r\n
+comment4.params=terrySpeedX
+comment4.target=void\ setSpeedX(int)
+comment4.text=\r\n\ Set\ the\ rocks\ X-axis\ speed\ to\ Terry's\ X-axis\ speed\r\n
+comment5.params=terrySpeedY
+comment5.target=void\ setSpeedY(int)
+comment5.text=\r\n\ Set\ the\ Y-axis\ speed\ of\ rock\ to\ Terry's\ Y-axis\ speed\r\n
 comment6.params=
 comment6.target=void\ die()
+comment6.text=\r\n\ delete\ the\ Ruby\ that\ touches\ the\ rock\ and\ play\ bonk\ sound\r\n
 numComments=7

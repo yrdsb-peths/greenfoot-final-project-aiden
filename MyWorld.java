@@ -29,10 +29,6 @@ public class MyWorld extends World
         // Create a new world with 1200x400 cells with a cell size of 1x1 pixels.
         super(1200, 400, 1); 
         
-        //Play background music looped and set volume
-        backgroundMusic.playLoop() ;
-        backgroundMusic.setVolume(30);
-        
         // Create Terry the Pterodactyl 
         terry = new Terry();
         addObject(terry, 600, 200);
@@ -65,14 +61,15 @@ public class MyWorld extends World
         //If Terry runs out of life points, end the game and display wave counter
         if(lifePoints <= 0)
         {
-            Greenfoot.stop(); 
-            
-            gameOver = new Label("Game Over", 100);
-            addObject(gameOver, 600, 150);
-
-            waveScore = new Label("Wave: "+ waveCounter, 80);
-            addObject(waveScore, 600, 250);
+            backgroundMusic.stop();
+            GameOver gameOver = new GameOver(this);
+            Greenfoot.setWorld(gameOver);
         }
+    }
+    
+    public int getWaveCounter()
+    {
+        return waveCounter;
     }
     
     /**
@@ -82,6 +79,8 @@ public class MyWorld extends World
     {
         frame++;
         int rubyX = 0;
+        backgroundMusic.playLoop();
+        backgroundMusic.setVolume(30);
         
         //Update meteor impact timer to seconds every 60 frames
         if(frame % 60 == 0)

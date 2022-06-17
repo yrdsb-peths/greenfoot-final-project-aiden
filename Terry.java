@@ -9,7 +9,6 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Terry extends Actor
 {
     GreenfootSound terryHurt = new GreenfootSound("terryScreach.wav");
-    GreenfootSound terryFly = new GreenfootSound("wingFlap.mp3");
     
     GreenfootImage[] idleRight = new GreenfootImage[9];
     GreenfootImage[] idleLeft = new GreenfootImage[9];
@@ -48,8 +47,6 @@ public class Terry extends Actor
      */
     public void animateTerry()
     {
-        terryFly.playLoop();
-        terryFly.setVolume(30);
         if(facing.equals("right"))
         {
             setImage(idleRight[imageIndex]);
